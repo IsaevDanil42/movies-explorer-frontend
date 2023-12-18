@@ -59,3 +59,37 @@
   font-weight: 500;
   line-height: 16px
 }
+
+.header__profile-signup {
+  margin-right: 30px;
+  align-self: center;
+  text-decoration: none;
+  color: #000;
+  text-align: right;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.header__profile-signup:hover {
+  opacity: 0.7;
+}
+
+.header__profile-signin {
+  padding: 8px 20px;
+  border-radius: 3px;
+  background: #3456F3;
+  text-decoration: none;
+  color: #FFF;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.header__profile-signin:hover {
+  opacity: 0.8;
+}
