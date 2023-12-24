@@ -1,0 +1,25 @@
+.promo {
+  background-color: #DDDEE3;
+  height: 484px;
+  /* height: 524px; */
+  padding-bottom: 40px;
+  /* margin-bottom: 40px; */
+  background-image: url(../../../images/promo-back-image.svg);
+  background-repeat: no-repeat;
+  background-position: top 82px right 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo__title {
+  max-width: 730px;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}

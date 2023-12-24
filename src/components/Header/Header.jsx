@@ -4,6 +4,7 @@ import "./Header.css";
 
 function Header() {
   const loggedIn = true;
+
   return (
     <header className="header">
       <Link to="/" className="header__logo"></Link>
