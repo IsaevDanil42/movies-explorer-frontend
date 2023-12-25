@@ -22,6 +22,10 @@
   text-decoration-line: underline;
 }
 
+.navtab__link:hover {
+  opacity: 0.7;
+}
+
 .navtab__link:last-child {
   margin: 0;
 }
