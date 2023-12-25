@@ -1,5 +1,6 @@
 import "./AboutMe.css";
 import photo from "../../../images/my-photo.png";
+import { Link } from "react-router-dom";
 
 function AboutMe() {
   return (
@@ -11,7 +12,7 @@ function AboutMe() {
           <p className="about-me__subtitle">Пока еще не фронтенд-разработчик, 25 лет</p>
           <p className="about-me__text">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена
             и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
-          <a className="about-me__github" href="https://github.com/IsaevDanil42">Github</a>
+          <Link className="about-me__github" to="https://github.com/IsaevDanil42" target="_blank" >Github</Link>
         </div>
         <img className="about-me__photo" src={photo} alt="Моё фото"></img>
       </div>
