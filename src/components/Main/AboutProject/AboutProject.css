@@ -1,6 +1,7 @@
 .about-project {
-  height: 608px;
+  height: 498px;
   background-color: #FAFAFA;
+  padding-top: 110px;
 }
 
 .about-project__heading {
@@ -12,7 +13,7 @@
   line-height: normal;
   letter-spacing: -0.88px;
   max-width: 1140px;
-  margin: 110px auto 0;
+  margin: 0 auto;
   padding-bottom: 23px;
   border-bottom: 1px solid #000;
 }

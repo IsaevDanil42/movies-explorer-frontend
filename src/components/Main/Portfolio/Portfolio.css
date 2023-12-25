@@ -1,7 +1,7 @@
 .portfolio {
   background-image: #FAFAFA;
   max-width: 1140px;
-  margin: 100px auto 0;
+  margin: 100px auto 125px;
 }
 
 .portfolio__heading {
@@ -23,6 +23,11 @@
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+}
+
+.portfolio__link:last-child {
+  border: none;
+  padding: 0;
 }
 
 .portfolio__link:hover {
