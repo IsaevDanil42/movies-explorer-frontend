@@ -1,12 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import icon from "../../images/profile-icon.svg";
 import "./Header.css";
 
 function Header() {
   const loggedIn = true;
+  let location = useLocation();
 
   return (
-    <header className="header">
+    <header className={location.pathname === "/"? "header" : "header header_white"}>
       <Link to="/" className="header__logo"></Link>
       {loggedIn &&
         <nav className="header__menu">

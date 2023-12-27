@@ -12,7 +12,7 @@ function SearchForm() {
     <section className="search">
       <form className="search__form">
         <div className="search__icon" />
-        <input className="search__input" placeholder="Фильм"></input>
+        <input className="search__input" placeholder="Фильм"/>
         <button className="search__button"></button>
         <div className="search__checkbox-container">
           <input className="search__checkbox" type="checkbox" id="search-checkbox" checked={checkboxState} onChange={handleChange}></input>
