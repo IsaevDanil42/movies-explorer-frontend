@@ -4,7 +4,7 @@ import "./Profile.css";
 function Profile() {
   const [disabled, setDisabled] = useState(true);
   const [editing, setEditing] = useState(false);
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 

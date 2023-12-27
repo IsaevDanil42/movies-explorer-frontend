@@ -1,13 +1,16 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import icon from "../../images/profile-icon.svg";
 import "./Header.css";
+import { useState } from "react";
 
 function Header() {
-  const loggedIn = true;
+  const [loggedIn, setLoggedIn] = useState(false);
   let location = useLocation();
+  let requiredPath = location.pathname === "/" || location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "profile";
 
   return (
-    <header className={location.pathname === "/"? "header" : "header header_white"}>
+    requiredPath &&
+    <header className={location.pathname === "/" ? "header" : "header header_white"}>
       <Link to="/" className="header__logo"></Link>
       {loggedIn &&
         <nav className="header__menu">
