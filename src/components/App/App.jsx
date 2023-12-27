@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main/>}></Route>
         <Route path="/movies" element={<Movies/>}></Route>
-        <Route path="/saved-movies" element={<></>}></Route>
+        <Route path="/saved-movies" element={<SavedMovies/>}></Route>
         <Route path="/profile" element={<></>}></Route>
         <Route path="/signin" element={<></>}></Route>
         <Route path="/signup" element={<></>}></Route>

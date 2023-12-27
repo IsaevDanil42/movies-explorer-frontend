@@ -17,6 +17,12 @@
   height: 166px;
 }
 
+.movies-card-list__devider_alternative {
+  display: flex;
+
+  height: 140px;
+}
+
 .movies-card-list__more-button {
   margin: 50px auto;
 
