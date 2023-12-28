@@ -46,3 +46,34 @@
 .movies-card-list__more-button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width:1060px) {
+  .movies-card-list {
+    margin: 80px auto 0;
+
+    max-width: 708px;
+  }
+
+  .movies-card-list__container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 36px;
+  }
+}
+
+@media screen and (max-width:737px) {
+  .movies-card-list {
+    margin: 50px auto 0;
+
+    max-width: 300px;
+  }
+
+  .movies-card-list__container {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .movies-card-list__more-button {
+    width: 240px;
+  }
+}

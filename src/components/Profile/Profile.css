@@ -157,3 +157,82 @@
 .profile__exit-button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width:1060px) {
+  .profile {
+    margin: 0 auto;
+    max-width: 768px;
+  }
+
+  .profile__form {
+    margin: 236px auto 0;
+  }
+
+  .profle__title {
+    margin: 0 0 79px;
+  }
+
+  .profile__submit-button {
+    margin-top: 206px;
+  }
+
+  .profile__edit-button {
+    margin-top: 206px;
+  }
+}
+
+@media screen and (max-width:737px) {
+  .profile {
+    max-width: 320px;
+  }
+
+  .profile__form {
+    margin: 70px auto 0;
+
+    width: 260px;
+  }
+
+  .profle__title {
+    margin: 0 0 66px;
+  }
+
+  .profile__input-container {
+    margin-top: 12px;
+
+    width: 100%;
+  }
+
+  .profile__input-container:nth-child(2) {
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #E8E8E8;
+  }
+
+  .profile__input-title {
+    width: 100px;
+  }
+
+  .profile__input {
+    width: 160px;
+  }
+
+  .profile__submit-button {
+    margin-top: 378px;
+
+    width: 260px;
+
+    font-size: 12px;
+  }
+
+  .profile__edit-button {
+    margin-top: 378px;
+
+    font-size: 12px;
+  }
+
+  .profile__exit-button {
+    margin: 14px 0 70px;
+
+    font-size: 12px;
+  }
+}

@@ -65,7 +65,6 @@
   border-bottom: 1px solid #3456F3;
 }
 
-
 .form__submit-button {
   margin-top: 130px;
 
@@ -133,4 +132,64 @@
 
 .form__subtitle-link:hover {
   opacity: 0.7;
+}
+
+@media screen and (max-width:1060px) {
+  .form {
+    margin: 232px auto;
+  }
+}
+
+@media screen and (max-width:737px) {
+  .form {
+    margin: 56px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 260px;
+  }
+
+  .form__title {
+    margin: 50px 0 80px;
+  }
+
+  .form__input-container {
+    width: 260px;
+  }
+
+
+  .form__input {
+    padding: 0 0 11px;
+  }
+
+  .form__input:focus {
+    padding-bottom: 11px;
+  }
+
+  .form__submit-button {
+    margin-top: 218px;
+
+    width: 260px;
+
+    font-size: 12px;
+  }
+
+  .form__submit-button_login {
+    margin-top: 285px;
+  }
+
+  .form__subtitle-container {
+    margin-top: 14px;
+  }
+
+  .form__subtitle {
+    margin: 0 7px 0 0;
+
+    font-size: 12px;
+  }
+
+  .form__subtitle-link {
+    font-size: 12px;
+  }
 }

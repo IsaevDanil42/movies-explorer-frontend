@@ -1,8 +1,10 @@
 .navtab {
-  background-color: #F5F5F5;
   display: flex;
   justify-content: center;
+
   height: 66px;
+
+  background-color: #F5F5F5;
 }
 
 .navtab__menu {
@@ -12,7 +14,9 @@
 
 .navtab__link {
   margin-right: 40px;
+
   text-decoration: none;
+
   color: #000;
   font-family: Inter;
   font-size: 13px;
@@ -28,4 +32,24 @@
 
 .navtab__link:last-child {
   margin: 0;
+}
+
+@media screen and (max-width:1060px) {
+  .navtab {
+    margin: 0 auto;
+
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width:737px) {
+  .navtab {
+    max-width: 320px;
+  }
+
+  .navtab__link {
+    margin-right: 24px;
+
+    font-size: 11px;
+  }
 }
