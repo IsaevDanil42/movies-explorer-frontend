@@ -3,7 +3,7 @@
 
 ## Ссылка на репозиторий
 
-https://github.com/IsaevDanil42/movies-explorer-api
+https://github.com/IsaevDanil42/movies-explorer-frontend
 
 ## Ссылка на макет(light-3)
 
