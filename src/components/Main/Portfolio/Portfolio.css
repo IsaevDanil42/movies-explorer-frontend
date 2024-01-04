@@ -1,5 +1,5 @@
 .portfolio {
-  background-image: #FAFAFA;
+  background-color: #FAFAFA;
   max-width: 1140px;
   margin: 100px auto 125px;
 }
@@ -53,7 +53,7 @@
   background-position: center;
 }
 
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1160px) {
   .portfolio {
     max-width: 668px;
     margin: 90px auto 90px;

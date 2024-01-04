@@ -4,7 +4,7 @@ import "./SavedMovies.css";
 
 function SavedMovies() {
   return (
-    <main>
+    <main className="saved-movies">
       <SearchForm></SearchForm>
       <MoviesCardList></MoviesCardList>
     </main>

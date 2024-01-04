@@ -87,13 +87,14 @@
 .about-me__photo {
   margin-top: 66px;
 
-  max-width: 270px;
-  max-height: 327px;
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
 
   border-radius: 10px;
 }
 
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1160px) {
   .about-me {
     margin: 0 auto;
 
@@ -136,8 +137,8 @@
   }
 
   .about-me__photo {
-    max-width: 255px;
-    max-height: 307px;
+    width: 255px;
+    height: 307px;
   }
 }
 
@@ -166,7 +167,7 @@
   }
 
   .about-me__text-container {
-    margin-top: 66px;
+    margin-top: 0;
 
     max-width: 600px;
   }

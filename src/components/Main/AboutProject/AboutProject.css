@@ -127,7 +127,7 @@
 
 .about-project__timeline-frontend-text {
   margin: 0;
-  padding: 1px 356px;
+  padding: 14px 356px;
 
   width: 200px;
   height: 17px;
@@ -141,7 +141,7 @@
   line-height: 17px;
 }
 
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1160px) {
   .about-project {
     margin: 0 auto;
     padding-top: 90px;
@@ -203,7 +203,7 @@
 
   .about-project__timeline-frontend-text {
     margin: 4px 0 0;
-    padding: 9px 164px;
+    padding: 10px 164px;
   }
 }
 

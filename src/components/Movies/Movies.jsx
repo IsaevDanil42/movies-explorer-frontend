@@ -4,7 +4,7 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
 function Movies() {
   return (
-    <main>
+    <main className="movies">
       <SearchForm></SearchForm>
       <MoviesCardList></MoviesCardList>
     </main>

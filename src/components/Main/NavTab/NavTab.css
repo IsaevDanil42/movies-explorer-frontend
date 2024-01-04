@@ -34,19 +34,13 @@
   margin: 0;
 }
 
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1160px) {
   .navtab {
     margin: 0 auto;
-
-    max-width: 768px;
   }
 }
 
 @media screen and (max-width:737px) {
-  .navtab {
-    max-width: 320px;
-  }
-
   .navtab__link {
     margin-right: 24px;
 

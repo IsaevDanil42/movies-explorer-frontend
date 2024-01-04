@@ -84,11 +84,10 @@
   letter-spacing: -0.56px;
 }
 
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1160px) {
   .techs {
     margin: 0 auto;
 
-    max-width: 768px;
     height: 567px;
   }
 

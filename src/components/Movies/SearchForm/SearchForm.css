@@ -36,6 +36,10 @@
   outline: none;
 }
 
+.search__input:focus::placeholder {
+  color: transparent;
+}
+
 .search__button {
   cursor: pointer;
   height: 34px;
@@ -102,7 +106,7 @@
   line-height: 18px;
 }
 
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1160px) {
   .search {
     height: 182px;
     width: 708px;

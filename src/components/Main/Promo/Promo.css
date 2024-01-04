@@ -26,12 +26,11 @@
   letter-spacing: -2px;
 }
 
-@media screen and (max-width:1060px) {
+@media screen and (max-width:1160px) {
   .promo {
     margin: 0 auto;
     padding-bottom: 20px;
 
-    max-width: 768px;
     height: 764px;
 
     background-position: top 224px right 50%;
@@ -43,7 +42,6 @@
   .promo {
     padding-bottom: 39px;
 
-    max-width: 320px;
     height: 531px;
 
     background-position: top 142px right 50%;

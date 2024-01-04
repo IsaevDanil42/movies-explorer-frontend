@@ -14,7 +14,7 @@ function MoviesCardList() {
         <MoviesCard></MoviesCard>
         <MoviesCard></MoviesCard>
       </div>
-      <div className={location.pathname === "/movies" ? "movies-card-list__devider" : "movies-card-list__devider_alternative"}>
+      <div className={location.pathname === "/movies" ? "movies-card-list__devider" : "movies-card-list__devider movies-card-list__devider_alternative"}>
         {location.pathname === "/movies" && <button className="movies-card-list__more-button">Ещё</button>}
       </div>
     </section>
