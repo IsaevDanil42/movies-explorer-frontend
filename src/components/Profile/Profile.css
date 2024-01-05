@@ -1,15 +1,13 @@
 .profile {
   display: flex;
   flex-grow: 1;
-
-  background-color: #FFF;
 }
 
 .profile__form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
+  margin: 0 auto 40px;
 
   max-height: 556px;
 }
@@ -72,7 +70,7 @@
 
   border: none;
   outline: none;
-  background-color: #FFF;
+  background-color: inherit;
 
   color: #000;
   text-align: right;
@@ -130,10 +128,10 @@
 }
 
 .profile__edit-button {
-  margin-top: auto;
+  margin-top: 220px;
 
   border: none;
-  background-color: #fff;
+  background-color: inherit;
   cursor: pointer;
 
   color: #000;
@@ -154,7 +152,7 @@
 
 
   border: none;
-  background-color: #fff;
+  background-color: inherit;
   cursor: pointer;
 
   color: #EE3465;
@@ -181,6 +179,14 @@
 
   .profile__title {
     margin: 0 0 79px;
+  }
+
+  .profile__edit-button {
+    margin-top: 210px;
+  }
+
+  .profile__submit-button {
+    margin-top: 213px;
   }
 }
 
@@ -220,12 +226,16 @@
   }
 
   .profile__submit-button {
+    margin-top: 383px;
+
     width: 260px;
 
     font-size: 12px;
   }
 
   .profile__edit-button {
+    margin-top: 379px;
+
     font-size: 12px;
   }
 

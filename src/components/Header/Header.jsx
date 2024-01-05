@@ -32,7 +32,7 @@ function Header() {
 
   return (
     requiredPath &&
-    <header className={location.pathname === "/" ? "header" : "header header_white"}>
+    <header className={(location.pathname === "/" ? "header" : "header header_white") + " " + (!isNavHiden ? "header_sticky" : "")}>
       <div className="header__container">
         <Link to="/" className="header__logo"></Link>
         {loggedIn && !isModile &&
@@ -60,7 +60,7 @@ function Header() {
                           <NavLink to="/saved-movies" className={({ isActive }) => `header__menu-link ${isActive ? "header__menu-link_active" : ""}`}>Сохранённые фильмы</NavLink>
                         </div>
                         <Link to="/profile" className="header__profile-link">
-                          <img src={icon}></img>
+                          <img src={icon} alt="Иконка аккаунта"></img>
                           <span>Аккаунт</span>
                         </Link>
                       </nav>
