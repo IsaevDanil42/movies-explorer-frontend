@@ -3,8 +3,7 @@ import icon from "../../images/profile-icon.svg";
 import "./Header.css";
 import { useEffect, useState } from "react";
 
-function Header() {
-  const [loggedIn, setLoggedIn] = useState(true);
+function Header({ loggedIn }) {
   const [isModile, setIsModile] = useState(false);
   const [isNavHiden, setNavHiden] = useState(true);
   let location = useLocation();

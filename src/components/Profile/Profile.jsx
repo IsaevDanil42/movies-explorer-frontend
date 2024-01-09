@@ -1,12 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./Profile.css";
+import { api } from "../../utils/MainApi";
 
-function Profile() {
+function Profile({ onSignOut, setCurrentUser }) {
+  const currentUser = React.useContext(CurrentUserContext);
   const [disabled, setDisabled] = useState(true);
   const [editing, setEditing] = useState(false);
   const [error, setError] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState(currentUser.name);
+  const [email, setEmail] = useState(currentUser.email);
 
   function handleEditClick() {
     setDisabled(!disabled);
@@ -25,6 +28,11 @@ function Profile() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    api.updateUserInfo(email, name)
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => console.log(err))
     setDisabled(!disabled);
     setEditing(!editing);
   }
@@ -55,7 +63,7 @@ function Profile() {
         {!editing &&
           <>
             <button className="profile__edit-button" onClick={handleEditClick}>Редактировать</button>
-            <button className="profile__exit-button">Выйти из аккаунта</button>
+            <button className="profile__exit-button" onClick={onSignOut}>Выйти из аккаунта</button>
           </>
         }
       </div>
