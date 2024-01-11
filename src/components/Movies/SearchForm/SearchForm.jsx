@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm() {
-  const [checkboxState, setCheckboxState] = useState(true);
+function SearchForm({ searchSubmit, checkboxFilter }) {
+  const [checkboxState, setCheckboxState] = useState(false);
   const [isModile, setIsModile] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    searchSubmit(searchQuery);
+  }
 
   function handleChange(e) {
     setCheckboxState(e.target.checked);
+    checkboxFilter(!checkboxState);
   }
 
   function handleResize() {
@@ -15,6 +22,10 @@ function SearchForm() {
     } else {
       setIsModile(false);
     }
+  }
+
+  function handleChangeInput(e) {
+    setSearchQuery(e.target.value);
   }
 
   useEffect(() => {
@@ -27,9 +38,9 @@ function SearchForm() {
 
   return (
     <section className="search">
-      <form className="search__form">
+      <form className="search__form" onSubmit={handleSubmit}>
         <div className="search__icon" />
-        <input className="search__input" placeholder="Фильм" />
+        <input className="search__input" placeholder="Фильм" value={searchQuery} onChange={handleChangeInput} />
         <button className="search__button"></button>
         {!isModile &&
           <div className="search__checkbox-container">

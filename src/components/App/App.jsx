@@ -50,6 +50,7 @@ function App() {
   const onSignOut = function () {
     localStorage.removeItem('jwt');
     setLoggedIn(false);
+    navigate('/', { replace: true });
   }
 
 

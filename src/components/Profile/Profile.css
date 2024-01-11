@@ -36,6 +36,7 @@
 }
 
 .profile__input-container {
+  position: relative;
   margin-top: 14px;
 
   width: 100%;
@@ -81,6 +82,25 @@
   line-height: normal;
 }
 
+.profile__input_error {
+  color: #EE3465;
+}
+
+.profile__input-error {
+  display: block;
+  position: absolute;
+
+  width: 410px;
+  height: 12px;
+
+  text-align: right;
+  color: #EE3465;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .profile__submit-button {
   margin-top: auto;
 
@@ -104,6 +124,7 @@
 .profile__submit-button_disabled {
   margin-top: 20px;
 
+  cursor: auto;
   background-color: #F8F8F8;
   color: #C2C2C2;
 }
@@ -223,6 +244,10 @@
 
   .profile__input {
     width: 160px;
+  }
+
+  .profile__input-error {
+    width: 268px;
   }
 
   .profile__submit-button {
