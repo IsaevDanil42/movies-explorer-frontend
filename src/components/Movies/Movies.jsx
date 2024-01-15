@@ -9,30 +9,22 @@ function Movies() {
   const [movies, setMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
   const [likedMovies, setLikedMovies] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [searchError, setSerchError] = useState(false);
+  const [emptyError, setEmptyError] = useState(false);
   const [limit, setLimit] = useState();
   const [isChanged, setChange] = useState(false);
   const [rowSize, setRowSize] = useState(0);
 
   React.useEffect(() => {
-    moviesApi.getMovies()
-      .then((movies) => {
-        setMovies(movies);
-        setSortedMovies(movies);
-      })
-      .catch((err) => console.log(err))
+    if (localStorage.getItem('searchQuery')) {
+      searchSubmit(localStorage.getItem('searchQuery'));
+    }
   }, [])
 
   React.useEffect(() => {
-    api.getMovies()
-      .then((movies) => {
-        setLikedMovies(movies);
-      })
-      .catch((err) => console.log(err))
-  }, [isChanged])
-
-  React.useEffect(() => {
     window.addEventListener("resize", handleResize);
-  })
+  }, [])
 
   React.useEffect(() => {
     handleResize();
@@ -62,36 +54,76 @@ function Movies() {
   function handleLike(movie, isSaved) {
     if (!isSaved) {
       api.addMovie(movie)
-        .then(() => {
+        .then((movie) => {
           setChange(!isChanged);
+          setLikedMovies([...likedMovies, movie]);
         })
         .catch((err) => console.log(err))
     } else {
-      const deleteMovie = likedMovies.filter((likesMovie) => likesMovie.movieId === movie.id)
+      let arrIndex;
+      const deleteMovie = likedMovies.filter((likesMovie, index) =>{
+        arrIndex = index;
+        return likesMovie.movieId === movie.id
+      });
       api.deleteMovie(deleteMovie[0]._id)
         .then(() => {
           setChange(!isChanged);
+          likedMovies.splice(arrIndex, 1);
         })
         .catch((err) => console.log(err))
     }
   }
 
   function searchSubmit(searchQuery) {
-    setSortedMovies(movies.filter(movie => movie.nameRU.toLowerCase().includes(searchQuery)));
+    if (searchQuery) {
+      setSerchError(false);
+      setEmptyError(false);
+      setLoading(true);
+      setRowSize(0);
+      localStorage.setItem('searchQuery', searchQuery);
+      if (movies.length === 0) {
+        api.getMovies()
+          .then((movies) => {
+            setLikedMovies(movies);
+          })
+          .catch(() => setSerchError(true));
+        moviesApi.getMovies()
+          .then((data) => {
+            setMovies(data);
+            return data;
+          })
+          .then((data) => filter(data, searchQuery))
+          .catch(() => setSerchError(true))
+          .finally(() => setLoading(false));
+      } else {
+        filter(movies, searchQuery);
+        setLoading(false);
+      }
+    } else {
+      setEmptyError(true);
+    }
   }
 
-  function checkboxFilter(status) {
-    if(status) {
-      setSortedMovies(movies.filter(movie => movie.duration < 40));
+  function filter(movies, searchQuery) {
+    if (localStorage.getItem('checkboxState') === "true") {
+      setSortedMovies(movies.filter((movie) => {
+        return (movie.nameRU.toLowerCase().includes(searchQuery) || movie.nameEN.toLowerCase().includes(searchQuery)) && movie.duration < 40;
+      }))
     } else {
-      setSortedMovies(movies.filter(movie => movie));
+      setSortedMovies(movies.filter((movie) => {
+        return (movie.nameRU.toLowerCase().includes(searchQuery) || movie.nameEN.toLowerCase().includes(searchQuery))
+      }))
     }
+  }
+
+  function checkboxFilter() {
+    filter(movies, localStorage.getItem('searchQuery'));
   }
 
   return (
     <main className="movies">
-      <SearchForm searchSubmit={searchSubmit} checkboxFilter={checkboxFilter}></SearchForm>
-      <MoviesCardList movies={sortedMovies} limit={limit + rowSize} maxLimit={limit} handleAddRow={handleAddRow} handleLike={handleLike} likedMovies={likedMovies}></MoviesCardList>
+      <SearchForm searchSubmit={searchSubmit} checkboxFilter={checkboxFilter} emptyError={emptyError} oldQuery={localStorage.getItem('searchQuery')}></SearchForm>
+      <MoviesCardList movies={sortedMovies} limit={limit + rowSize} maxLimit={limit} handleAddRow={handleAddRow} handleLike={handleLike} likedMovies={likedMovies} isLoading={isLoading} searchError={searchError}></MoviesCardList>
     </main>
   )
 }

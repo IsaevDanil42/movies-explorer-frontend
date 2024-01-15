@@ -136,4 +136,5 @@ class Api {
   }
 }
 
-export const api = new Api('https://api.moviesbydi.nomoredomainsmonster.ru');
+// export const api = new Api('https://api.moviesbydi.nomoredomainsmonster.ru');
+export const api = new Api('http://localhost:3001');

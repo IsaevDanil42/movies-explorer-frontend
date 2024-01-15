@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm({ searchSubmit, checkboxFilter }) {
-  const [checkboxState, setCheckboxState] = useState(false);
+function SearchForm({ searchSubmit, checkboxFilter, emptyError, oldQuery }) {
+  const [checkboxState, setCheckboxState] = useState(localStorage.getItem('checkboxState') === "true");
   const [isModile, setIsModile] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(oldQuery || '');
 
   function handleSubmit(e) {
     e.preventDefault();
-    searchSubmit(searchQuery);
+    searchSubmit(searchQuery.toLowerCase());
   }
 
   function handleChange(e) {
     setCheckboxState(e.target.checked);
+    localStorage.setItem('checkboxState', e.target.checked)
     checkboxFilter(!checkboxState);
   }
 
@@ -34,7 +35,7 @@ function SearchForm({ searchSubmit, checkboxFilter }) {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-  })
+  }, [])
 
   return (
     <section className="search">
@@ -49,6 +50,7 @@ function SearchForm({ searchSubmit, checkboxFilter }) {
           </div>
         }
       </form>
+      {emptyError && <span className="search__emptyErrror">Нужно ввести ключевое слово</span>}
       {isModile &&
         <div className="search__checkbox-container">
           <input className="search__checkbox" type="checkbox" id="search-checkbox" checked={checkboxState} onChange={handleChange}></input>

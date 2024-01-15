@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./MoviesCard.css";
 import { Link, useLocation } from "react-router-dom";
 
 function MoviesCard({ movie, handleLike, isLiked }) {
-  const [isSaved, setSaved] = useState(isLiked)
+  const [isSaved, setSaved] = useState(isLiked);
   let location = useLocation();
+
 
   function handleLikeMovie() {
     handleLike(movie, isSaved);

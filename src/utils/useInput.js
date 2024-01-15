@@ -5,7 +5,8 @@ export const useInput = (initialValue, validations) => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setDirty] = useState(false);
   const [isChange, setChange] = useState(false);
-  const valid = useValidation(value, validations);
+  const [currentValue, setCurrentValue] = useState('');
+  const valid = useValidation(value, validations, currentValue);
 
   const reloadInputValue = (value) => {
     setValue(value);
@@ -20,11 +21,16 @@ export const useInput = (initialValue, validations) => {
     setDirty(true);
   }
 
+  const saveCurrentValue = (value) => {
+    setCurrentValue(value);
+  }
+
   return {
     value,
     reloadInputValue,
     onChange,
     onFocus,
+    saveCurrentValue,
     isDirty,
     isChange,
     ...valid

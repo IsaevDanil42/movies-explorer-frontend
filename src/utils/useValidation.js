@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const useValidation = (value, validations) => {
+export const useValidation = (value, validations, currentValue) => {
   const [error, setError] = useState(false);
   const [errMessage, setErrMessage] = useState('');
 
@@ -44,6 +44,14 @@ export const useValidation = (value, validations) => {
             break dance;
           }
           break;
+        case 'unicValue':
+          if (value !== currentValue) {
+            setError(false);
+          } else {
+            setError(true);
+            setErrMessage('Новое и старое значения не далжны совпадать');
+            break dance;
+          }
         default:
       }
     }

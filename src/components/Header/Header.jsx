@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 function Header({ loggedIn }) {
   const [isModile, setIsModile] = useState(false);
   const [isNavHiden, setNavHiden] = useState(true);
+  const [hideButton, setHideButton] = useState(false);
   let location = useLocation();
   let requiredPath = location.pathname === "/" || location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "/profile";
 
@@ -19,6 +20,7 @@ function Header({ loggedIn }) {
 
   function handleMenu() {
     setNavHiden(!isNavHiden);
+    setHideButton(!hideButton);
   }
 
   useEffect(() => {
@@ -27,7 +29,7 @@ function Header({ loggedIn }) {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-  })
+  }, [])
 
   return (
     requiredPath &&
@@ -49,7 +51,7 @@ function Header({ loggedIn }) {
                   <span>Аккаунт</span>
                 </Link> :
                 <>
-                  <button className={isNavHiden ? "header__burger-button" : "header__burger-button header__burger-button_close"} onClick={handleMenu}></button>
+                  {hideButton && <button className="header__burger-close-button" onClick={handleMenu}></button>}
                   {!isNavHiden &&
                     <div className="header__burger-background">
                       <nav className="header__burger-menu">
@@ -75,6 +77,7 @@ function Header({ loggedIn }) {
             </>
           }
         </div>
+        {!hideButton && isModile && <button className="header__burger-button" onClick={handleMenu}></button>}
       </div>
     </header>
   );

@@ -5,6 +5,17 @@
   border-bottom: 1px solid #E8E8E8;
 }
 
+.search__emptyErrror {
+  margin-left: 63px;
+
+  color: #FF004C;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .search__form {
   display: flex;
   align-items: center;
@@ -140,6 +151,10 @@
     flex-wrap: wrap;
 
     width: 300px;
+  }
+
+  .search__emptyErrror {
+    font-size: 11px;
   }
 
   .search__icon {

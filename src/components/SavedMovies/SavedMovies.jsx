@@ -7,13 +7,15 @@ import "./SavedMovies.css";
 function SavedMovies() {
   const [likedMovies, setLikedMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
+  const [emptyError, setEmptyError] = useState(false);
+  const [searchError, setSerchError] = useState(false);
   const [isChanged, setChange] = useState(false);
 
   React.useEffect(() => {
     api.getMovies()
       .then((movies) => {
         setLikedMovies(movies);
-        setSortedMovies(movies);
+        filter(movies, localStorage.getItem('searchQuerySaved'));
       })
       .catch((err) => console.log(err))
   }, [isChanged])
@@ -26,22 +28,46 @@ function SavedMovies() {
       .catch((err) => console.log(err))
   }
 
+  // function searchSubmit(searchQuery) {
+  //   setSortedMovies(likedMovies.filter(movie => movie.nameRU.toLowerCase().includes(searchQuery)));
+  // }
+
+  // function checkboxFilter(status) {
+  //   if (status) {
+  //     setSortedMovies(likedMovies.filter(movie => movie.duration < 40));
+  //   } else {
+  //     setSortedMovies(likedMovies.filter(movie => movie));
+  //   }
+  // }
+
+
   function searchSubmit(searchQuery) {
-    setSortedMovies(likedMovies.filter(movie => movie.nameRU.toLowerCase().includes(searchQuery)));
+    setSerchError(false);
+    setEmptyError(false);
+    localStorage.setItem('searchQuerySaved', searchQuery);
+    filter(likedMovies, searchQuery);
   }
 
-  function checkboxFilter(status) {
-    if (status) {
-      setSortedMovies(likedMovies.filter(movie => movie.duration < 40));
+  function filter(movies, searchQuery) {
+    if (localStorage.getItem('checkboxState') === "true") {
+      setSortedMovies(movies.filter((movie) => {
+        return (movie.nameRU.toLowerCase().includes(searchQuery) || movie.nameEN.toLowerCase().includes(searchQuery)) && movie.duration < 40;
+      }))
     } else {
-      setSortedMovies(likedMovies.filter(movie => movie));
+      setSortedMovies(movies.filter((movie) => {
+        return (movie.nameRU.toLowerCase().includes(searchQuery) || movie.nameEN.toLowerCase().includes(searchQuery))
+      }))
     }
+  }
+
+  function checkboxFilter() {
+    filter(likedMovies, localStorage.getItem('searchQuerySaved'));
   }
 
   return (
     <main className="saved-movies">
-      <SearchForm searchSubmit={searchSubmit} checkboxFilter={checkboxFilter}></SearchForm>
-      <MoviesCardList movies={sortedMovies} limit={101} handleLike={handleLike}></MoviesCardList>
+      <SearchForm searchSubmit={searchSubmit} checkboxFilter={checkboxFilter} emptyError={emptyError} oldQuery={localStorage.getItem('searchQuerySaved')}></SearchForm>
+      <MoviesCardList movies={sortedMovies} limit={101} handleLike={handleLike} searchError={searchError}></MoviesCardList>
     </main>
   )
 }

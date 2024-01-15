@@ -49,6 +49,9 @@ function App() {
 
   const onSignOut = function () {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('searchQuery');
+    localStorage.removeItem('searchQuerySaved');
+    localStorage.removeItem('checkboxState');
     setLoggedIn(false);
     navigate('/', { replace: true });
   }
@@ -81,8 +84,20 @@ function App() {
               setCurrentUser={setCurrentUser}
             />}
           />
-          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
-          <Route path="/signup" element={<Register handleLogin={handleLogin} />} />
+          <Route path="/signin" element={
+            <ProtectedRoute
+              element={Login}
+              loggedIn={!loggedIn}
+              handleLogin={handleLogin}
+            />}
+          />
+          <Route path="/signup" element={
+            <ProtectedRoute
+              element={Register}
+              loggedIn={!loggedIn}
+              handleLogin={handleLogin}
+            />}
+          />
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer></Footer>
