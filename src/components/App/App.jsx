@@ -51,6 +51,7 @@ function App() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('searchQuery');
     localStorage.removeItem('searchQuerySaved');
+    localStorage.removeItem('movies');
     localStorage.removeItem('checkboxState');
     setLoggedIn(false);
     navigate('/', { replace: true });

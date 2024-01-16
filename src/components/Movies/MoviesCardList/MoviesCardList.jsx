@@ -22,7 +22,7 @@ function MoviesCardList({ movies, limit, maxLimit, handleAddRow, handleLike, lik
           }
         </div>
       }
-      {(movies.length === 0) && !isLoading && <span className="movies-card-list__error">Ничего не найдено</span>}
+      {(movies.length === 0) && (localStorage.getItem('searchQuery')) && !isLoading && <span className="movies-card-list__error">Ничего не найдено</span>}
       <div className={location.pathname === "/movies" ? "movies-card-list__devider" : "movies-card-list__devider movies-card-list__devider_alternative"}>
         {(location.pathname === "/movies" && movies.length > maxLimit && movies.length > limit && !searchError && !isLoading) && <button className="movies-card-list__more-button" onClick={handleAddRow}>Ещё</button>}
       </div>

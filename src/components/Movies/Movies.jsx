@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { api } from "../../utils/MainApi";
 
 function Movies() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('movies')) || []);
   const [sortedMovies, setSortedMovies] = useState([]);
   const [likedMovies, setLikedMovies] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -24,12 +24,14 @@ function Movies() {
 
   React.useEffect(() => {
     window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
   }, [])
 
   React.useEffect(() => {
     handleResize();
   }, [])
-
 
   function handleResize() {
     if (window.innerWidth < 1160 && window.innerWidth > 737) {
@@ -45,7 +47,7 @@ function Movies() {
     if (window.innerWidth < 1160 && window.innerWidth > 737) {
       setRowSize(rowSize + 2);
     } else if (window.innerWidth < 737) {
-      setRowSize(rowSize + 1);
+      setRowSize(rowSize + 2);
     } else {
       setRowSize(rowSize + 4);
     }
@@ -55,19 +57,19 @@ function Movies() {
     if (!isSaved) {
       api.addMovie(movie)
         .then((movie) => {
-          setChange(!isChanged);
+          // setChange(!isChanged);
           setLikedMovies([...likedMovies, movie]);
         })
         .catch((err) => console.log(err))
     } else {
       let arrIndex;
-      const deleteMovie = likedMovies.filter((likesMovie, index) =>{
+      const deleteMovie = likedMovies.filter((likesMovie, index) => {
         arrIndex = index;
         return likesMovie.movieId === movie.id
       });
       api.deleteMovie(deleteMovie[0]._id)
         .then(() => {
-          setChange(!isChanged);
+          // setChange(!isChanged);
           likedMovies.splice(arrIndex, 1);
         })
         .catch((err) => console.log(err))
@@ -81,7 +83,7 @@ function Movies() {
       setLoading(true);
       setRowSize(0);
       localStorage.setItem('searchQuery', searchQuery);
-      if (movies.length === 0) {
+      if (!localStorage.getItem('movies')) {
         api.getMovies()
           .then((movies) => {
             setLikedMovies(movies);
@@ -90,14 +92,22 @@ function Movies() {
         moviesApi.getMovies()
           .then((data) => {
             setMovies(data);
+            localStorage.setItem('movies', JSON.stringify(data));
             return data;
           })
           .then((data) => filter(data, searchQuery))
           .catch(() => setSerchError(true))
           .finally(() => setLoading(false));
       } else {
-        filter(movies, searchQuery);
-        setLoading(false);
+        api.getMovies()
+          .then((movies) => {
+            setLikedMovies(movies);
+          })
+          .then(() => {
+            filter(JSON.parse(localStorage.getItem('movies')), searchQuery);
+            setLoading(false);
+          })
+          .catch(() => setSerchError(true));
       }
     } else {
       setEmptyError(true);
@@ -117,6 +127,7 @@ function Movies() {
   }
 
   function checkboxFilter() {
+    console.log(movies, localStorage.getItem('searchQuery'));
     filter(movies, localStorage.getItem('searchQuery'));
   }
 

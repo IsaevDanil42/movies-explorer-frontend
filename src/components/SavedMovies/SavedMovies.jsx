@@ -9,13 +9,14 @@ function SavedMovies() {
   const [sortedMovies, setSortedMovies] = useState([]);
   const [emptyError, setEmptyError] = useState(false);
   const [searchError, setSerchError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [isChanged, setChange] = useState(false);
 
   React.useEffect(() => {
     api.getMovies()
       .then((movies) => {
         setLikedMovies(movies);
-        filter(movies, localStorage.getItem('searchQuerySaved'));
+        filter(movies, searchQuery);
       })
       .catch((err) => console.log(err))
   }, [isChanged])
@@ -28,23 +29,10 @@ function SavedMovies() {
       .catch((err) => console.log(err))
   }
 
-  // function searchSubmit(searchQuery) {
-  //   setSortedMovies(likedMovies.filter(movie => movie.nameRU.toLowerCase().includes(searchQuery)));
-  // }
-
-  // function checkboxFilter(status) {
-  //   if (status) {
-  //     setSortedMovies(likedMovies.filter(movie => movie.duration < 40));
-  //   } else {
-  //     setSortedMovies(likedMovies.filter(movie => movie));
-  //   }
-  // }
-
-
   function searchSubmit(searchQuery) {
     setSerchError(false);
     setEmptyError(false);
-    localStorage.setItem('searchQuerySaved', searchQuery);
+    setSearchQuery(searchQuery);
     filter(likedMovies, searchQuery);
   }
 
@@ -61,7 +49,7 @@ function SavedMovies() {
   }
 
   function checkboxFilter() {
-    filter(likedMovies, localStorage.getItem('searchQuerySaved'));
+    filter(likedMovies, searchQuery);
   }
 
   return (

@@ -6,7 +6,6 @@ function MoviesCard({ movie, handleLike, isLiked }) {
   const [isSaved, setSaved] = useState(isLiked);
   let location = useLocation();
 
-
   function handleLikeMovie() {
     handleLike(movie, isSaved);
     setSaved(!isSaved);
