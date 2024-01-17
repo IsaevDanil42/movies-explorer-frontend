@@ -53,6 +53,9 @@ function App() {
     localStorage.removeItem('searchQuerySaved');
     localStorage.removeItem('movies');
     localStorage.removeItem('checkboxState');
+    localStorage.removeItem('checkboxSavePageState');
+    localStorage.removeItem('sortedMovies');
+    localStorage.removeItem('likedMovies');
     setLoggedIn(false);
     navigate('/', { replace: true });
   }

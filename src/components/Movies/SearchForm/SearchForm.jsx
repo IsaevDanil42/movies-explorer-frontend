@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm({ searchSubmit, checkboxFilter, emptyError, oldQuery }) {
-  const [checkboxState, setCheckboxState] = useState(localStorage.getItem('checkboxState') === "true");
+function SearchForm({ searchSubmit, checkboxFilter, emptyError, checkboxState, oldQuery }) {
   const [isModile, setIsModile] = useState(false);
   const [searchQuery, setSearchQuery] = useState(oldQuery || '');
 
@@ -12,9 +11,7 @@ function SearchForm({ searchSubmit, checkboxFilter, emptyError, oldQuery }) {
   }
 
   function handleChange(e) {
-    setCheckboxState(e.target.checked);
-    localStorage.setItem('checkboxState', e.target.checked)
-    checkboxFilter(!checkboxState);
+    checkboxFilter(e.target.checked);
   }
 
   function handleResize() {

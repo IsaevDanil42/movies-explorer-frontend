@@ -11,12 +11,14 @@ function SavedMovies() {
   const [searchError, setSerchError] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isChanged, setChange] = useState(false);
+  const [checkboxState, setCheckboxState] = useState(localStorage.getItem('checkboxSavePageState') === "true");
 
   React.useEffect(() => {
     api.getMovies()
       .then((movies) => {
         setLikedMovies(movies);
         filter(movies, searchQuery);
+        localStorage.setItem('likedMovies', JSON.stringify(movies));
       })
       .catch((err) => console.log(err))
   }, [isChanged])
@@ -37,7 +39,7 @@ function SavedMovies() {
   }
 
   function filter(movies, searchQuery) {
-    if (localStorage.getItem('checkboxState') === "true") {
+    if (localStorage.getItem('checkboxSavePageState') === "true") {
       setSortedMovies(movies.filter((movie) => {
         return (movie.nameRU.toLowerCase().includes(searchQuery) || movie.nameEN.toLowerCase().includes(searchQuery)) && movie.duration < 40;
       }))
@@ -48,13 +50,15 @@ function SavedMovies() {
     }
   }
 
-  function checkboxFilter() {
+  function checkboxFilter(checked) {
+    setCheckboxState(checked);
+    localStorage.setItem('checkboxSavePageState', checked)
     filter(likedMovies, searchQuery);
   }
 
   return (
     <main className="saved-movies">
-      <SearchForm searchSubmit={searchSubmit} checkboxFilter={checkboxFilter} emptyError={emptyError} oldQuery={localStorage.getItem('searchQuerySaved')}></SearchForm>
+      <SearchForm searchSubmit={searchSubmit} checkboxFilter={checkboxFilter} emptyError={emptyError} checkboxState={checkboxState}></SearchForm>
       <MoviesCardList movies={sortedMovies} limit={101} handleLike={handleLike} searchError={searchError}></MoviesCardList>
     </main>
   )
