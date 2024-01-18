@@ -157,10 +157,12 @@
 }
 
 .header__burger-button {
-  position: absolute;
+  /* position: absolute; */
   padding: 0;
-  top: 16px;
-  right: 30px;
+  margin-top: 15px;
+  margin-right: 29px;
+  /* top: 16px;
+  right: 30px; */
 
   cursor: pointer;
   border: none;
@@ -177,24 +179,30 @@
   opacity: 0.7;
 }
 
-.header__burger-button_close {
+.header__burger-close-button {
+  position: absolute;
   top: 22px;
   right: 22px;
 
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
   background-image: url(../../images/burger-close-button.svg);
 
   width: 32px;
   height: 32px;
+
+  z-index: 100;
 }
 
-.header__burger-button_close:hover {
+.header__burger-close-button:hover {
   opacity: 0.7;
 }
 
 @media screen and (max-width:1160px) {
   .header__container {
     justify-content: space-between;
-    position: relative;
+    /* position: relative; */
 
     max-width: 768px;
   }
@@ -307,8 +315,8 @@
   }
 
   .header__burger-button {
-    top: 18px;
-    right: 16px;
+    margin-right: 16px;
+    margin-top: 18px;
 
     background-size: contain;
     background-repeat: no-repeat;
@@ -318,7 +326,7 @@
 
   }
 
-  .header__burger-button_close {
+  .header__burger-close-button {
     top: 11px;
     right: 11px;
   }

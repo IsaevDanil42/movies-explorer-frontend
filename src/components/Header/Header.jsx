@@ -3,10 +3,10 @@ import icon from "../../images/profile-icon.svg";
 import "./Header.css";
 import { useEffect, useState } from "react";
 
-function Header() {
-  const [loggedIn, setLoggedIn] = useState(true);
+function Header({ loggedIn }) {
   const [isModile, setIsModile] = useState(false);
   const [isNavHiden, setNavHiden] = useState(true);
+  const [hideButton, setHideButton] = useState(false);
   let location = useLocation();
   let requiredPath = location.pathname === "/" || location.pathname === "/movies" || location.pathname === "/saved-movies" || location.pathname === "/profile";
 
@@ -20,6 +20,7 @@ function Header() {
 
   function handleMenu() {
     setNavHiden(!isNavHiden);
+    setHideButton(!hideButton);
   }
 
   useEffect(() => {
@@ -28,7 +29,10 @@ function Header() {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-  })
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [])
 
   return (
     requiredPath &&
@@ -50,7 +54,7 @@ function Header() {
                   <span>Аккаунт</span>
                 </Link> :
                 <>
-                  <button className={isNavHiden ? "header__burger-button" : "header__burger-button header__burger-button_close"} onClick={handleMenu}></button>
+                  {hideButton && <button className="header__burger-close-button" onClick={handleMenu}></button>}
                   {!isNavHiden &&
                     <div className="header__burger-background">
                       <nav className="header__burger-menu">
@@ -76,6 +80,7 @@ function Header() {
             </>
           }
         </div>
+        {!hideButton && isModile && <button className="header__burger-button" onClick={handleMenu}></button>}
       </div>
     </header>
   );
